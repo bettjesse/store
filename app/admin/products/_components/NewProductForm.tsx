@@ -13,21 +13,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { addProduct } from "../../_actions/product";
+import { addProduct, updateProduct } from "../../_actions/product";
 import { useFormState, useFormStatus } from "react-dom";
 import { TriangleAlertIcon } from "lucide-react";
-
+import Image from "next/image";
 
 import { useTransition , useState   } from "react"
 import FormError from "./FormError";
 import FormSucess from "./FormSucess";
-const NewProductForm = () => {
+import { Product } from "@prisma/client";
+const NewProductForm = ( { product }: { product?: Product | null }) => {
 
   const { pending } = useFormStatus()
 // const [error, setError ]= useState<string  | undefined>("")
 const [success, setSuccess ]= useState<string  | undefined>("")
 
-   const [error, action] = useFormState (addProduct, {})
+   const [error, action] = useFormState (product == null ? addProduct : updateProduct.bind(null, product.id), {})
 
     // const form = useForm <z.infer <typeof addSchema>>({
     //     defaultValues:{
@@ -77,6 +78,7 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                   <Input
                   {...field}
                   placeholder="Name"
+                  defaultValue={product?.name || ""}
                   
                   // disabled= {isSubmitting}
                   
@@ -106,7 +108,8 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                       type="number"
                       step="0.01"
                       disabled={isSubmitting}
-                      placeholder="Set a price for your course"
+                      placeholder="Price"
+                      defaultValue={product?.price || ""}
                       {...field}
                     />
                   </FormControl>
@@ -135,6 +138,7 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                      
                       disabled={isSubmitting}
                       placeholder="description"
+                      defaultValue={product?.description || ""}
                       {...field}
                     />
                   </FormControl>
@@ -158,13 +162,22 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                 <FormItem>
                     <FormLabel> File</FormLabel>
                   <FormControl>
+                    <div>
+
+                 
                     <Input
                        type="file"
                      
                       disabled={isSubmitting}
+                      required= {product == null}
                    
                       {...field}
                     />
+                    {product != null && (
+          <div className="text-muted-foreground">{product.filePath}</div>
+        )}
+                     </div>
+           
                   </FormControl>
                   <FormMessage>
                   {error.file && (
@@ -176,7 +189,10 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                   </div>
               )}
                   </FormMessage>
+                 
+
                 </FormItem>
+                       
               )}
               />
              <FormField
@@ -186,13 +202,26 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                 <FormItem>
                     <FormLabel> Image</FormLabel>
                   <FormControl>
+                    <div>
+
+                    
                     <Input
                        type="file"
                      
                       disabled={isSubmitting}
-                      placeholder="description"
+                     
+                      required= {product == null}
                       {...field}
                     />
+                     {product != null && (
+          <Image
+            src={product.imagePath}
+            height="400"
+            width="400"
+            alt="Product Image"
+          />
+        )}
+        </div>
                   </FormControl>
                   <FormMessage>
                   {error.image && (

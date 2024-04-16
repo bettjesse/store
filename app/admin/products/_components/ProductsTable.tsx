@@ -1,5 +1,5 @@
 import { formatPrice } from "@/app/utils/format";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/table";
 import { db } from "@/lib/db";
 import { CheckCircle2, MoreVertical, XCircle } from "lucide-react";
+import Link from "next/link";
+import { ActiveToggleDropdownItem, DeleteDropdownItem } from "./ProductAction";
+
 
 const ProductsTable = async () => {
   const products = await db.product.findMany({
@@ -66,6 +69,17 @@ const ProductsTable = async () => {
                         <DropdownMenuItem>
                             <a download href= {`/admin/products/${product.id}/download`}>Download</a>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                            <a download href= {`/admin/products/${product.id}/download`}>Download</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                        <Link href={`/admin/products/${product.id}/edit`}>
+                      Edit
+                    </Link>
+                        </DropdownMenuItem>
+                         <ActiveToggleDropdownItem id ={product.id} isAvailable={product.isAvailable}/>
+                         <DropdownMenuSeparator/>
+                         <DeleteDropdownItem id={product.id} disabled ={product._count.orders > 0}/>
                     </DropdownMenuContent>
                     
                 </DropdownMenu>
