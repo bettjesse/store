@@ -21,7 +21,7 @@ const ProductsTable = async () => {
       name: true,
       price: true,
       isAvailable: true,
-      _count: { select: { orders: true } },
+      _count: { select: { order: true } },
     },
     orderBy: { name: "asc" },
   });
@@ -59,7 +59,7 @@ const ProductsTable = async () => {
             </TableCell>
             <TableCell>{product.name}</TableCell>
             <TableCell>{formatPrice(product.price) }</TableCell>
-            <TableCell>{product._count.orders}</TableCell>
+            <TableCell>{product._count.order}</TableCell>
             <TableCell>
                 <DropdownMenu>
                     <DropdownMenuTrigger>
@@ -69,9 +69,7 @@ const ProductsTable = async () => {
                         <DropdownMenuItem>
                             <a download href= {`/admin/products/${product.id}/download`}>Download</a>
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                            <a download href= {`/admin/products/${product.id}/download`}>Download</a>
-                        </DropdownMenuItem>
+                       
                         <DropdownMenuItem asChild>
                         <Link href={`/admin/products/${product.id}/edit`}>
                       Edit
@@ -79,7 +77,7 @@ const ProductsTable = async () => {
                         </DropdownMenuItem>
                          <ActiveToggleDropdownItem id ={product.id} isAvailable={product.isAvailable}/>
                          <DropdownMenuSeparator/>
-                         <DeleteDropdownItem id={product.id} disabled ={product._count.orders > 0}/>
+                         <DeleteDropdownItem id={product.id} disabled ={product._count.order > 0}/>
                     </DropdownMenuContent>
                     
                 </DropdownMenu>

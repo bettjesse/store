@@ -7,15 +7,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { db } from "@/lib/db";
-import { formatCurrency, formatNumber } from "@/lib/formatter";
+import { formatNumber } from "@/lib/formatter";
+import { formatPrice } from "../utils/format";
 
 const getSaleInfo = async () => {
   const data = await db.order.aggregate({
-    _sum: { pricePaidIncents: true },
+    _sum: { price: true },
     _count: true,
   });
   return {
-    price: (data._sum.pricePaidIncents || 0) / 100,
+    price: (data._sum.price || 0) ,
     salesCount: data._count,
   };
 };
@@ -24,12 +25,12 @@ const getUserData = async () => {
   const [user, orderinfo] = await Promise.all([
     db.user.count(),
     db.order.aggregate({
-      _sum: { pricePaidIncents: true },
+      _sum: { price: true },
     }),
   ]);
   return {
     user,
-    averageValuePerUser:user ===  0 ? 0 : (orderinfo._sum.pricePaidIncents || 0 ) / user /100
+    averageValuePerUser:user ===  0 ? 0 : (orderinfo._sum.price || 0 ) / user 
   }
 };
 const AdminDashboard = async () => {
@@ -43,12 +44,12 @@ const AdminDashboard = async () => {
       <DashboardCard
         title="Sales"
         subtitle={`${formatNumber(sales.salesCount)}Orders`}
-        body={formatCurrency(sales.price)}
+        body={ formatPrice(sales.price)}
       />
       <DashboardCard
         title="Customer"
         subtitle={`${formatNumber(userInfo.averageValuePerUser)}Average value`}
-        body={formatCurrency(userInfo.user)}
+        body={formatNumber(userInfo.user)}
       />
     </div>
   );

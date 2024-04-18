@@ -96,7 +96,7 @@ console.log(formData)
 
   await db.product.create({
     data: {
-    
+     
       name: data.name,
       description: data.description,
       price: data.price,
@@ -107,8 +107,8 @@ console.log(formData)
   })
   // return {success : "Product created"}
 
-  // revalidatePath("/")
-  // revalidatePath("/products")
+  revalidatePath("/")
+  revalidatePath("/products")
 
   redirect("/admin/products")
 }

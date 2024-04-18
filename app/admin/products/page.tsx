@@ -24,7 +24,7 @@ const AdminProductsPage= () => {
     <>
     <div className=" flex justify-between gap-4">
  <PageHeader>Products</PageHeader>
- <Link href = "admin/products/new">
+ <Link href = "/admin/products/new">
  <Button>
 Add product
  </Button>
