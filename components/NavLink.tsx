@@ -10,7 +10,11 @@ const NavLink = (props: Omit <ComponentProps<typeof Link>, "className">) => {
 
     const Pathname= usePathname()
   return (
-   <Link{... props} className= {cn("p-4 hover:bg-blue-400 hover:text-blue-100", Pathname=== props.href && "bg-white text-gray-100")}/>
+    <div className=" flex justify-between">
+
+{/* <h1>PetSmart</h1> */}
+   <Link{... props} className= {cn("p-4 hover:bg-blue-400 hover:text-blue-100", Pathname=== props.href && "bg-white text-gray-100 ")}/>
+   </div>
   )
 }
 

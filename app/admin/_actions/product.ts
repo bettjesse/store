@@ -70,6 +70,9 @@ import { revalidatePath } from "next/cache"
   description: z.string().min(1 , {
     message: "Description is required",
   }),
+  category: z.string().min(1 , {
+    message: "Category is required",
+  }),
   price: z.coerce.number().min(1),
   file: fileSchema.refine((file) => file.size > 0, "Required"),
   image: imageSchema.refine((file) => file.size > 0, "Required"),
@@ -100,6 +103,7 @@ console.log(formData)
       name: data.name,
       description: data.description,
       price: data.price,
+      category: data.category,
       filePath,
       imagePath,
       isAvailable: false
@@ -154,6 +158,7 @@ export async function updateProduct(
     data: {
       name: data.name,
       description: data.description,
+      category: data.category,
       price: data.price,
       filePath,
       imagePath,

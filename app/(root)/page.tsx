@@ -38,7 +38,7 @@ export default function HomePage() {
         alt="hero"
         width={1920} // Set width to cover the width of the screen
         height={600} // Set a fixed height for the hero section
-        layout="responsive" // Maintain aspect ratio
+        
       />
     </div>
   </div>

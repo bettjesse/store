@@ -20,6 +20,7 @@ name String
  filePath String
  imagePath String
  description String
+ category String
 
   isAvailable Boolean @default(true)
 

@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 
 interface NavbarProps {
@@ -6,7 +7,20 @@ interface NavbarProps {
 
 const Navbar = ({children}:NavbarProps) => {
   return (
-    <div className=" bg-blue-400 text-white flex justify-center px-4">{children}</div>
+    <div className="   flex justify-between items-center shadow-md px-4">
+      <Link href= "/">
+      <h1 className=" text-xl text-blue-400">PetSmart</h1>
+      </Link>
+      
+
+     
+     <div className=" flex justify-between items-center">
+     {children}
+     </div>
+      
+ 
+      </div>
+
   )
 }
 

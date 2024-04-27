@@ -8,7 +8,7 @@ export default function RootLayout({
   }>) {
     return (
       <>
-      <Navbar>
+      <Navbar >
         <NavLink href= "/admin"> Dahboard</NavLink>
         <NavLink href= "admin/products"> Products</NavLink>
         {/* <NavLink href= "admin/customers"> Customers</NavLink>

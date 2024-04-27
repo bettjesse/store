@@ -67,36 +67,60 @@ const [success, setSuccess ]= useState<string  | undefined>("")
   
   <Form {...form}>
   <form action={action}>
-    <div className=" space-y-4">
+  <div className="max-w-lg mx-auto">
+  <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <FormField
-            control={form.control}
-            name ="name"
-            render= {({field})=> (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input
-                  {...field}
-                  placeholder="Name"
-                  defaultValue={product?.name || ""}
-                  
-                  // disabled= {isSubmitting}
-                  
-                  />
-                </FormControl>
-                <FormMessage>
-                  {error.name && (
-                  
-                      <div className=" bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive ">
-                          <TriangleAlertIcon className="w-4 h-4"/>
-                          <p>{error.name}</p>
-                      
-                      </div>
-                  )}
-                </FormMessage>
-              </FormItem>
-            )}
-            />
+    control={form.control}
+    name="name"
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>Name</FormLabel>
+        <FormControl>
+          <Input
+            {...field}
+            placeholder="Name"
+            defaultValue={product?.name || ""}
+            disabled={isSubmitting}
+  
+          />
+        </FormControl>
+        <FormMessage>
+          {error.name && (
+            <div className="bg-red-100 text-red-500 p-2 rounded-md flex items-center gap-x-2">
+              <TriangleAlertIcon className="w-4 h-4" />
+              <p>{error.name}</p>
+            </div>
+          )}
+        </FormMessage>
+      </FormItem>
+    )}
+  />
+    <FormField
+    control={form.control}
+    name="category"
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>Category</FormLabel>
+        <FormControl>
+          <Input
+            {...field}
+            placeholder="Category"
+            defaultValue={product?.category || ""}
+            disabled={isSubmitting}
+       
+          />
+        </FormControl>
+        <FormMessage>
+          {error.category && (
+            <div className="bg-red-100 text-red-500 p-2 rounded-md flex items-center gap-x-2">
+              <TriangleAlertIcon className="w-4 h-4" />
+              <p>{error.category}</p>
+            </div>
+          )}
+        </FormMessage>
+      </FormItem>
+    )}
+  />
              <FormField
               control={form.control}
               name="price"
@@ -236,16 +260,23 @@ const [success, setSuccess ]= useState<string  | undefined>("")
                 </FormItem>
               )}
               />
-      </div>
-       {/* <FormError error= {error}/> */}
-          {/* <FormSucess message= {success}/>  */}
-<Button
+              <div className=" mt-2 w-full">
+
+          
+              <Button
 className=""
 type="submit"
 
 >
 {pending ? "Saving..." : "Save"}
   </Button>
+  </div>
+      </div>
+      
+      </div>
+       {/* <FormError error= {error}/> */}
+          {/* <FormSucess message= {success}/>  */}
+
 
     </form>
   </Form>

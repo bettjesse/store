@@ -39,30 +39,43 @@ const stripePromise = loadStripe(
 
 export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
   return (
-    <div className="max-w-5xl w-full mx-auto space-y-8">
-      <div className="flex gap-4 items-center">
-        <div className="aspect-video flex-shrink-0 w-1/3 relative">
-          <Image
-            src={product.imagePath}
-            fill
-            alt={product.name}
-            className="object-cover"
-          />
-        </div>
-        <div>
-          <div className="text-lg">
-            {formatPrice(product.price)}
-          </div>
-          <h1 className="text-2xl font-bold">{product.name}</h1>
-          <div className="line-clamp-3 text-muted-foreground">
-            {product.description}
-          </div>
-        </div>
-      </div>
-      <Elements options={{ clientSecret }} stripe={stripePromise}>
-        <Form price={product.price} productId={product.id} />
-      </Elements>
+
+<div className="max-w-5xl w-full mx-auto space-y-8 px-4">
+  <div className="flex flex-col md:flex-row md:space-x-4 mt-3">
+    <div className="bg-red-500 rounded-md overflow-hidden md:w-1/3">
+      <Image src={product.imagePath} width={256} height={256} alt={product.name} className="object-cover w-full h-auto" />
     </div>
+    <div className="w-full md:w-2/3">
+      <div className="text-lg">{formatPrice(product.price)}</div>
+      <h1 className="text-2xl font-bold">{product.name}</h1>
+      <div className="line-clamp-3 text-white">{product.description}</div>
+    </div>
+  </div>
+  <Elements options={{ clientSecret }} stripe={stripePromise}>
+    <Form price={product.price} productId={product.id} />
+  </Elements>
+
+
+   {/* previous code  */}
+
+  {/* <div className="max-w-5xl w-full mx-auto space-y-8">
+  <div className="flex mt-3 gap-4 items-center">
+    <div className=" bg-red-500 rounded-md overflow-hidden">
+      <Image src={product.imagePath} width={256} height={256}  alt={product.name} className=" object-cover" />
+    </div>
+    <div className=" w-1/2 ">
+      <div className="text-lg">{formatPrice(product.price)}</div>
+      <h1 className="text-2xl font-bold">{product.name}</h1>
+      <div className="line-clamp-3 text-white">{product.description}</div>
+    </div>
+  </div>
+  <Elements options={{ clientSecret }} stripe={stripePromise}>
+    <Form price={product.price} productId={product.id} />
+  </Elements>
+</div> */}
+
+</div>
+
   )
 }
 
