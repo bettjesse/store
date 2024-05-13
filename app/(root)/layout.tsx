@@ -21,10 +21,10 @@ export default function RootLayout({
 
   
       <div className=" h-screen flex  justify-center p-4 "> {children}</div>
-      <div className=" w-full mt-3 h-[80px]  bg-blue-400 flex flex-col items-center justify-center">
+      {/* <div className=" w-full mt-3 h-[80px]  bg-blue-400 flex flex-col items-center justify-center">
          <h1 className=" text-center font-bold text-3xl">Pet training</h1>
          <p>2024</p>
-      </div>
+      </div> */}
       </div>
       </>
     );

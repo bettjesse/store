@@ -17,6 +17,7 @@ type ProductCardProps = {
   price: number
   description: string
   imagePath: string
+  category: string
 }
 
 export function ProductCard({
@@ -24,47 +25,30 @@ export function ProductCard({
   name,
   price,
   description,
+  category,
   imagePath,
 }: ProductCardProps) {
   return (
-    // <Card className="flex overflow-hidden flex-col">
-    //   <div className="relative w-full h-auto aspect-video">
-    //     <Image src={imagePath} fill alt={name} />
-    //   </div>
-    //   <CardHeader>
-    //     <CardTitle>{name}</CardTitle>
-    //     <CardDescription>{ formatPrice (price)}</CardDescription>
-    //   </CardHeader>
-    //   <CardContent className="flex-grow">
-    //     <p className="line-clamp-4">{description}</p>
-    //   </CardContent>
-    //   <CardFooter>
-    //     <Button asChild size="lg" className="w-full bg-[#81f0f0] hover:bg-slate-400">
-    //       <Link href={`/products/${id}/purchase`}>Purchase</Link>
-    //     </Button>
-    //   </CardFooter>
-    // </Card>
-
-    <div className="w-full p-3 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-    <div className="block relative h-48 rounded overflow-hidden">
-    <Image src={imagePath} fill alt={name} />
+    <div className="w-full p-4 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-md">
+    <div className="rounded overflow-hidden aspect-w-16 aspect-h-9">
+      <img src={imagePath} alt={name} className="w-full h-full object-cover" />
     </div>
     <div className="mt-4">
-      <h3 className="text-indigo-500 text-xs tracking-widest title-font mb-1">
-        {/* {product.category} */}
-      </h3>
-      <div className="flex justify-between align-middle">
-        <p className=" line-clamp-4 w-44">{name}</p>
-        <p className="truncate">{formatPrice(price)}</p>
-      </div>
-      <p className="mt-5 line-clamp-2">{description}</p>
-    </div>
-    <Button asChild size="lg" className="w-full bg-[#81f0f0] hover:bg-slate-400">
+      <h3 className="text-gray-600 text-sm uppercase font-semibold tracking-widest mb-1">{category}</h3>
+      <p className="text-gray-900 text-lg font-medium line-clamp-2">{name}</p>
+      {/* <p className="mt-2 text-gray-700 line-clamp-3">{description}</p> */}
+      <div className="flex justify-between items-center mt-3">
+        <p className="text-gray-800 font-bold">{formatPrice(price)}</p>
+        <Button asChild size="lg" className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75">
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
-       </Button>
+        </Button>
+      </div>
+    </div>
   </div>
-  )
+  
+  );
 }
+
 
 export function ProductCardSkeleton() {
   return (

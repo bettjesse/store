@@ -22,7 +22,7 @@ import { ActiveToggleDropdownItem, DeleteDropdownItem } from "./_components/Prod
 const AdminProductsPage= () => {
   return (
     <>
-    <div className=" flex justify-between gap-4">
+    <div className=" flex  mt-4 justify-between gap-4">
  <PageHeader>Products</PageHeader>
  <Link href = "/admin/products/new">
  <Button>

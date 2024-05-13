@@ -8,15 +8,24 @@ export default function RootLayout({
   }>) {
     return (
       <>
-      <Navbar >
-        <NavLink href= "/admin"> Dahboard</NavLink>
-        <NavLink href= "admin/products"> Products</NavLink>
-        {/* <NavLink href= "admin/customers"> Customers</NavLink>
-        <NavLink href= "admin/products"> Sales</NavLink> */}
+      
+
+    
+      <Navbar>
+        <NavLink href= "/"> Home</NavLink>
+        <NavLink href= "/products"> Products</NavLink>
+        <NavLink href= "/orders"> Orders</NavLink>
+      
       </Navbar>
-      <div className="flex flex-col h-screen">
-    <div className="bg-blue-400 flex-grow">{children}</div>
-  </div>
+     <div className=" h-full ">
+
+  
+      <div className=" h-screen flex  justify-center p-4 "> {children}</div>
+      {/* <div className=" w-full mt-3 h-[80px]  bg-blue-400 flex flex-col items-center justify-center">
+         <h1 className=" text-center font-bold text-3xl">Pet training</h1>
+         <p>2024</p>
+      </div> */}
+      </div>
       </>
     );
   }
