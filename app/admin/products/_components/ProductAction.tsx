@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation"
 // }
 // interface DeleteDropdownItemProps {
 // id: string,
-// disabled: boolean,
+// disabled?: boolean,
 // }
 
 
@@ -48,7 +48,7 @@ export function ActiveToggleDropdownItem({
     disabled,
   }: {
     id: string
-    disabled: boolean
+    disabled ?: boolean
   }) {
     const [isPending, startTransition] = useTransition()
     const router = useRouter()
