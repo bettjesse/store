@@ -268,7 +268,7 @@ className=""
 type="submit"
 
 >
-{pending ? "Saving..." : "Save"}
+{ isSubmitting ? "Saving..." : "Save"}
   </Button>
   </div>
       </div>

@@ -40,7 +40,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
   return (
     <div className="max-w-5xl w-full mx-auto space-y-8 px-4">
       <div className="flex flex-col md:flex-row md:space-x-4 mt-3">
-        <div className="bg-red-500 rounded-md overflow-hidden md:w-1/3">
+        <div className=" rounded-md overflow-hidden md:w-1/3">
           <Image src={product.imagePath} width={256} height={256} alt={product.name} className="object-cover w-full h-auto" />
         </div>
         <div className="w-full md:w-2/3">

@@ -13,7 +13,7 @@ const NavLink = (props: Omit <ComponentProps<typeof Link>, "className">) => {
     <div className=" flex justify-between">
 
 {/* <h1>PetSmart</h1> */}
-   <Link{... props} className= {cn("p-4 hover:bg-blue-400 hover:text-blue-100", Pathname=== props.href && "bg-white text-gray-100 ")}/>
+   <Link{... props} className= {cn("p-3  hover:text-blue-300", Pathname=== props.href && "bg-white text-blue-600 underline ")}/>
    </div>
   )
 }

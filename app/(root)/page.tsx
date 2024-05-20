@@ -30,23 +30,33 @@ const getNewestProducts = cache(() => {
 
 export default function HomePage() {
   return (
-<main className="space-y-12">
-  <div className="flex justify-center">
-    <div className="w-full overflow-hidden">
-      <Image
-        src="/images/hero.png"
-        alt="hero"
-        width={1920} // Set width to cover the width of the screen
-        height={600} // Set a fixed height for the hero section
-        
-      />
+<main className=" space-y-8">
+ 
+    {/* <div className="">
+    <Image
+  src="/images/hero.jpg"
+  alt="hero"
+  layout="fill" // Set layout to "fill" to replicate the behavior of object-cover
+  className="object-cover"
+  style={{ objectFit: 'cover' }} // Ensure object-fit: cover behavior
+/>
+
+    </div> */}
+        <div>
+        <img src="/images/hero2.jpg" className="w-full max-h-[600px] object-cover "/>
     </div>
-  </div>
-  <ProductGridSection
+
+
+<div className="md:m-3 m-2 flex flex-col gap-4">
+  
+<ProductGridSection
     title="High selling products"
     productsFetcher={getMostPopularProducts}
   />
+
   <ProductGridSection title="Latest" productsFetcher={getNewestProducts} />
+</div>
+ 
 </main>
 
   )
@@ -77,6 +87,9 @@ function ProductGridSection({
         <Suspense
           fallback={
             <>
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
               <ProductCardSkeleton />
               <ProductCardSkeleton />
               <ProductCardSkeleton />

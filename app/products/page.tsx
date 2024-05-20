@@ -12,11 +12,14 @@ const getProducts = cache(() => {
 
 export default function ProductsPage() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 md:m-3 m-2">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
       <Suspense
         fallback={
           <>
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
+            <ProductCardSkeleton />
             <ProductCardSkeleton />
             <ProductCardSkeleton />
             <ProductCardSkeleton />
