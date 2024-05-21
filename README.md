@@ -73,9 +73,21 @@ Contributions to this project are highly encouraged! Whether it involves adding 
 
 ## Get Started
 
-To begin exploring the Dog Training Manuals Platform and harnessing its wealth of resources, follow these simple steps:
+To begin exploring the Petsmart Platform, follow these simple steps:
 
 1. Clone the repository to your local environment.
 2. Install dependencies using `npm install`.
-3. Configure environment variables for MongoDB connection, Stripe API keys, and other essential settings.
-4. Launch the application using `npm run dev`.
+3. Configure environment variables for MongoDB connection, Stripe API keys, and other essential settings:
+
+  ```js
+   DATABASE_URL=""
+   ADMIN_USERNAME=
+   ADMIN_PASSWORD=
+   STRIPE_SECRET_KEY=
+   NEXT_PUBLIC_STRIPE_PUBLIC_KEY=
+   NEXT_PUBLIC_APP_URL=
+   STRIPE_WEBHOOK_SECRET=
+   RESEND_API_KEY=
+   SENDER_EMAIL=
+
+```
