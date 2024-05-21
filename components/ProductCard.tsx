@@ -31,7 +31,8 @@ export function ProductCard({
   return (
     <div className="w-full p-4 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-md">
     <div className="rounded overflow-hidden aspect-w-16 aspect-h-9">
-      <img src={imagePath} alt={name} className="w-full h-full object-cover" />
+      {/* <img src={imagePath} alt={name} className="w-full h-full object-cover" /> */}
+      <img src="/products/1ff59c17-fe58-40a5-867e-48a543359a8e-puupy-2.jpg" alt={name} className="w-full h-full object-cover" />
     </div>
     <div className="mt-4">
       <h3 className="text-gray-600 text-sm uppercase font-semibold tracking-widest mb-1">{category}</h3>
