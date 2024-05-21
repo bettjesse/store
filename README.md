@@ -4,7 +4,7 @@ This Dog Training Manuals Platform is dedicated to dog owners, trainers, and ent
 
 ## Features
 
-Categories: Blogs are organized into different categories such as front-end, back-end, UI/UX, system design, interview preparation, and more.
+
 
 
 1. Extensive Manual Collection: Explore a wide array of dog training manuals covering topics such as obedience training, puppy training, leash manners, agility training, behavior modification, and more.
