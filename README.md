@@ -80,7 +80,7 @@ To begin exploring the Petsmart Platform, follow these simple steps:
 3. Configure environment variables for MongoDB connection, Stripe API keys, and other essential settings:
 
   ```js
-   DATABASE_URL=""
+   DATABASE_URL=
    ADMIN_USERNAME=
    ADMIN_PASSWORD=
    STRIPE_SECRET_KEY=
