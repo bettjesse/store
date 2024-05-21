@@ -39,17 +39,19 @@ Utilizing React Suspense and fallbacks to improve user experience during data lo
 
 Implemented product skeletons to enhance user experience by displaying placeholder content for products while their data is being fetched. This helps maintain engagement and reduces perceived loading times.
 
-## Tech Stack
 
-- **Frontend**: Developed with Next.js and TypeScript, the frontend delivers a seamless and intuitive browsing experience tailored to dog enthusiasts.
-  
-- **Backend**: Powered by Node.js and Prisma, the backend manages user authentication, payment processing, manual management, and administrative functionalities.
-  
+  ## Tech Stack
+
+- **Next.js with TypeScript**: Developed primarily with Next.js, leveraging its hybrid nature to seamlessly integrate frontend and backend functionalities. TypeScript ensures type safety and enhances development efficiency.
+
+- **Prisma**: Utilizing Prisma, an ORM, to manage database operations and ensure data consistency and integrity.
+
 - **Database**: MongoDB serves as the database for storing user profiles, manual metadata, purchase history, and other relevant data.
-  
+
 - **Payment Processing**: Integrated with Stripe API to facilitate secure and efficient payment transactions.
-  
+
 - **Styling**: Tailwind CSS is employed for styling, ensuring a sleek and visually appealing interface that enhances user engagement.
+
 
 ## How It Works
 
