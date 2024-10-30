@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { formatPrice } from "@/app/utils/format"
+import { formatCurrency } from "@/lib/formatter"
 import {
   Elements,
   LinkAuthenticationElement,
@@ -44,7 +44,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
           <Image src={product.imagePath} width={256} height={256} alt={product.name} className="object-cover w-full h-auto" />
         </div>
         <div className="w-full md:w-2/3">
-          <div className="text-lg text-red-500">{formatPrice(product.price)}</div>
+          <div className="text-lg text-red-500">{formatCurrency(product.price)}</div>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <div className="">{product.description}</div>
         </div>
@@ -90,7 +90,7 @@ function Form({
       .confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${process.env.NEXT_PUBLIC_APP_URL}/stripe/purchase-success`,
+          return_url: `${process.env.NEXT_PUBLIC_URL}/stripe/purchase-success`,
         },
       })
       .then(({ error }) => {
@@ -130,7 +130,7 @@ function Form({
           >
             {isLoading
               ? "Purchasing..."
-              : `Purchase - ${formatPrice(price)}`}
+              : `Purchase - ${formatCurrency(price)}`}
           </Button>
         </CardFooter>
       </Card>

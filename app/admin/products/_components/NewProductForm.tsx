@@ -1,286 +1,130 @@
+
+
 "use client"
-import { useForm } from "react-hook-form";
-import { z } from "zod"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormLabel,
-  FormMessage,
-  FormItem,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { addProduct, updateProduct } from "../../_actions/product";
-import { useFormState, useFormStatus } from "react-dom";
-import { TriangleAlertIcon } from "lucide-react";
-import Image from "next/image";
 
-import { useTransition , useState   } from "react"
-import FormError from "./FormError";
-import FormSucess from "./FormSucess";
-import { Product } from "@prisma/client";
-const NewProductForm = ( { product }: { product?: Product | null }) => {
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-  const { pending } = useFormStatus()
-// const [error, setError ]= useState<string  | undefined>("")
-const [success, setSuccess ]= useState<string  | undefined>("")
+import { Textarea } from "@/components/ui/textarea"
+import { formatCurrency } from "@/lib/formatter"
+import { useState } from "react"
+import { addProduct, updateProduct } from "../../_actions/product"
+import { useFormState, useFormStatus } from "react-dom"
+import { Product } from "@prisma/client"
+import Image from "next/image"
 
-   const [error, action] = useFormState (product == null ? addProduct : updateProduct.bind(null, product.id), {})
+export function NewProductForm({ product }: { product?: Product | null }) {
+  const [error, action] = useFormState(
+    product == null ? addProduct : updateProduct.bind(null, product.id),
+    {}
+  )
+  const [price, setPrice] = useState<number | undefined>(
+    product?.price
+  )
 
-    // const form = useForm <z.infer <typeof addSchema>>({
-    //     defaultValues:{
-    //         name: "",
-    //         description: "",
-    //         price :  0,
-    //         image : undefined,
-    //         file : undefined
-
-    //     }
-    const form = useForm()
-    // })
- 
-    // const onSubmit = async (values:any) => {
-    //   setError("");
-    //   setSuccess("");
-    
-    //   try {
-    //      startTransition(async () => {
-    //       const data = await addProduct(values);
-    //       setError(data.error);
-          
-    //       setSuccess(data.success);
-    //       console.log("ERROR"  ,data.)
-    //       console.log("SUCCESS"  ,data.error)
-    //     });
-    //   } catch (error) {
-    //     // Handle errors here
-    //     console.error("An error occurred:", error);
-    //   }
-    // };
-    const { isSubmitting, isValid } = form.formState;
-
-  
-  return <div>
-  
-  <Form {...form}>
-  <form action={action}>
-  <div className="max-w-lg mx-auto">
-  <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <FormField
-    control={form.control}
-    name="name"
-    render={({ field }) => (
-      <FormItem>
-        <FormLabel>Name</FormLabel>
-        <FormControl>
-          <Input
-            {...field}
-            placeholder="Name"
-            defaultValue={product?.name || ""}
-            disabled={isSubmitting}
-  
-          />
-        </FormControl>
-        <FormMessage>
-          {error.name && (
-            <div className="bg-red-100 text-red-500 p-2 rounded-md flex items-center gap-x-2">
-              <TriangleAlertIcon className="w-4 h-4" />
-              <p>{error.name}</p>
-            </div>
-          )}
-        </FormMessage>
-      </FormItem>
-    )}
-  />
-    <FormField
-    control={form.control}
-    name="category"
-    render={({ field }) => (
-      <FormItem>
-        <FormLabel>Category</FormLabel>
-        <FormControl>
-          <Input
-            {...field}
-            placeholder="Category"
-            defaultValue={product?.category || ""}
-            disabled={isSubmitting}
-       
-          />
-        </FormControl>
-        <FormMessage>
-          {error.category && (
-            <div className="bg-red-100 text-red-500 p-2 rounded-md flex items-center gap-x-2">
-              <TriangleAlertIcon className="w-4 h-4" />
-              <p>{error.category}</p>
-            </div>
-          )}
-        </FormMessage>
-      </FormItem>
-    )}
-  />
-             <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Price</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      step="0.01"
-                      disabled={isSubmitting}
-                      placeholder="Price"
-                      defaultValue={product?.price || ""}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage>
-                  {error.price && (
-                  
-                  <div className=" bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive ">
-                      <TriangleAlertIcon className="w-4 h-4"/>
-                      <p>{error.price}</p>
-                  
-                  </div>
-              )}
-                  </FormMessage>
-                </FormItem>
-              )}
-              />
-             <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                    <FormLabel>description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                 
-                     
-                      disabled={isSubmitting}
-                      placeholder="description"
-                      defaultValue={product?.description || ""}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage>
-                  {error.description && (
-                  
-                  <div className=" bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive ">
-                      <TriangleAlertIcon className="w-4 h-4"/>
-                      <p>{error.description}</p>
-                  
-                  </div>
-              )}
-                  </FormMessage>
-                </FormItem>
-              )}
-              />
-             <FormField
-              control={form.control}
-              name="file"
-              render={({ field }) => (
-                <FormItem>
-                    <FormLabel> File</FormLabel>
-                  <FormControl>
-                    <div>
-
-                 
-                    <Input
-                       type="file"
-                     
-                      disabled={isSubmitting}
-                      required= {product == null}
-                   
-                      {...field}
-                    />
-                    {product != null && (
+  return (
+    <form action={action} className="space-y-8 p-6 max-w-lg mx-auto bg-gray-50 rounded-lg">
+      <div className="space-y-2">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          required
+          defaultValue={product?.name || ""}
+          className="w-full"
+        />
+          {error.name && <div className="text-destructive">{error.name}</div>}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="priceInCents">Price </Label>
+        <Input
+          type="number"
+          id="price"
+          name="price"
+          required
+          value={price}
+          onChange={e => setPrice(Number(e.target.value) || undefined)}
+          className="w-full"
+        />
+       {error.price && (
+          <div className="text-destructive">{error.price}</div>
+        )}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="category">Category</Label>
+        <Textarea
+          id="category"
+          name="category"
+          required
+          defaultValue={product?.category}
+          className="w-full"
+        />
+        {error.category && (
+          <div className="text-destructive">{error.category}</div>
+        )}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="description">Description</Label>
+        <Textarea
+          id="description"
+          name="description"
+          required
+          defaultValue={product?.description}
+          className="w-full"
+        />
+        {error.description && (
+          <div className="text-destructive">{error.description}</div>
+        )}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="file">File</Label>
+        <Input
+          type="file"
+          id="file"
+          name="file"
+          required={product == null}
+          className="w-full"
+        />
+        {product != null && (
           <div className="text-muted-foreground">{product.filePath}</div>
         )}
-                     </div>
-           
-                  </FormControl>
-                  <FormMessage>
-                  {error.file && (
-                  
-                  <div className=" bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive ">
-                      <TriangleAlertIcon className="w-4 h-4"/>
-                      <p>{error.file}</p>
-                  
-                  </div>
-              )}
-                  </FormMessage>
-                 
-
-                </FormItem>
-                       
-              )}
-              />
-             <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                    <FormLabel> Image</FormLabel>
-                  <FormControl>
-                    <div>
-
-                    
-                    <Input
-                       type="file"
-                     
-                      disabled={isSubmitting}
-                     
-                      required= {product == null}
-                      {...field}
-                    />
-                     {product != null && (
-          <Image
-            src={product.imagePath}
-            height="400"
-            width="400"
-            alt="Product Image"
-          />
+         {error.file && <div className="text-destructive">{error.file}</div>}
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="image">Image</Label>
+        <Input
+          type="file"
+          id="image"
+          name="image"
+          required={product == null}
+          className="w-full"
+        />
+        {product != null && (
+          <div className="flex justify-center">
+            <Image
+              src={product.imagePath}
+              height={400}
+              width={400}
+              alt="Product Image"
+              className="max-w-full h-auto"
+            />
+          </div>
         )}
-        </div>
-                  </FormControl>
-                  <FormMessage>
-                  {error.image && (
-                  
-                  <div className=" bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive ">
-                      <TriangleAlertIcon className="w-4 h-4"/>
-                      <p>{error.image}</p>
-                  
-                  </div>
-              )}
-                  </FormMessage>
-                </FormItem>
-              )}
-              />
-              <div className=" mt-2 w-full">
-
-          
-              <Button
-className=""
-type="submit"
-
->
-{ isSubmitting ? "Saving..." : "Save"}
-  </Button>
-  </div>
+              {error.image && <div className="text-destructive">{error.image}</div>}
       </div>
-      
-      </div>
-       {/* <FormError error= {error}/> */}
-          {/* <FormSucess message= {success}/>  */}
-
-
+      <SubmitButton />
     </form>
-  </Form>
-  </div>;
-};
+  )
+}
 
-export default NewProductForm;
+function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button type="submit" disabled={pending} className="w-full">
+      {pending ? "Saving..." : "Save"}
+    </Button>
+  )
+}

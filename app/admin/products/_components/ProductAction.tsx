@@ -2,17 +2,10 @@
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { useTransition } from "react"
-import { AvailabilityToggle, deleteProduct } from "../../_actions/product"
+import { deleteProduct ,toggleProductAvailability} from "../../_actions/product"
 import { useRouter } from "next/navigation"
 
-// interface   ActiveToggleDropdownItemProps {
-//     isAvailable : boolean,
-//     id : string
-// }
-// interface DeleteDropdownItemProps {
-// id: string,
-// disabled?: boolean,
-// }
+
 
 
 
@@ -32,7 +25,7 @@ export function ActiveToggleDropdownItem({
         disabled={isPending}
         onClick={() => {
           startTransition(async () => {
-            await AvailabilityToggle(id, !isAvailable)
+            await toggleProductAvailability(id, !isAvailable)
             router.refresh()
          
           })
@@ -48,25 +41,24 @@ export function ActiveToggleDropdownItem({
     disabled,
   }: {
     id: string
-    disabled ?: boolean
+    disabled?: boolean
   }) {
     const [isPending, startTransition] = useTransition()
     const router = useRouter()
-   
+  
     return (
       <DropdownMenuItem
-      className="bg-red-300 hover:bg-red-600"
-        // variant="destructive"
+        className="bg-red-500 text-white hover:bg-red-700" // always red with hover effect
         disabled={disabled || isPending}
         onClick={() => {
           startTransition(async () => {
             await deleteProduct(id)
             router.refresh()
-          
           })
         }}
       >
-        <p className= "">Delete</p>
+        <p>Delete</p>
       </DropdownMenuItem>
     )
   }
+  

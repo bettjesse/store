@@ -18,7 +18,7 @@ export default function RootLayout({
       <div className=" hidden md:flex">
         <NavLink href= "/"> Home</NavLink>
         <NavLink href= "/products"> Products</NavLink>
-        {/* <NavLink href= "/orders"> Orders</NavLink> */}
+        <NavLink href= "/orders"> Orders</NavLink>
         </div>
         <div className=" md:hidden">
           <UserMobileNav/>

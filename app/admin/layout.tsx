@@ -15,7 +15,7 @@ export default function RootLayout({
         <NavLink href= "admin/products"> Sales</NavLink> */}
       </Navbar>
       <div className="flex flex-col h-screen">
-    <div className="bg-blue-400 flex-grow">{children}</div>
+    <div className="flex-grow">{children}</div>
   </div>
       </>
     );

@@ -1,4 +1,5 @@
-import { formatPrice } from "@/app/utils/format";
+
+import { formatCurrency } from "@/lib/formatter";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -53,12 +54,12 @@ const ProductsTable = async () => {
               ) : (
                 <>
                   <span className=" sr-only"> Unavailable</span>
-                  <XCircle />
+                  <XCircle className="stroke-destructive" />
                 </>
               )}
             </TableCell>
             <TableCell>{product.name}</TableCell>
-            <TableCell>{formatPrice(product.price) }</TableCell>
+            <TableCell>{formatCurrency(product.price) }</TableCell>
             <TableCell>{product._count.order}</TableCell>
             <TableCell>
                 <DropdownMenu>

@@ -1,5 +1,5 @@
 import PageHeader from "@/app/admin/_components/PageHeader"
-import NewProductForm from "../../_components/NewProductForm"
+import { NewProductForm } from "../../_components/NewProductForm"
 import { db } from "@/lib/db"
 
 export default async function EditProductPage({

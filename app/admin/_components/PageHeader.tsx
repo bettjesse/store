@@ -6,7 +6,7 @@ interface PageHeaderProps {
 
 const PageHeader = ({children}:PageHeaderProps) => {
   return (
-    <h1 className=" text-2xl mb-4 text-white">{children}</h1>
+    <h1 className=" text-2xl mb-4 text-white  md:text-xl">{children}</h1>
   )
 }
 
