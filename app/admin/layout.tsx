@@ -10,9 +10,9 @@ export default function RootLayout({
       <>
       <Navbar >
         <NavLink href= "/admin"> Dahboard</NavLink>
-        <NavLink href= "admin/products"> Products</NavLink>
-        {/* <NavLink href= "admin/customers"> Customers</NavLink>
-        <NavLink href= "admin/products"> Sales</NavLink> */}
+        <NavLink href= "/admin/products"> Products</NavLink>
+        <NavLink href= "/admin/users"> Customers</NavLink>
+        <NavLink href= "/admin/orders"> Sales</NavLink>
       </Navbar>
       <div className="flex flex-col h-screen">
     <div className="flex-grow">{children}</div>

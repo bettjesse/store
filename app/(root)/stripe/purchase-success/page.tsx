@@ -52,8 +52,20 @@ export default async function SuccessPage({
           <p className="line-clamp-3 text-gray-700 mt-2">
             {product.description}
           </p>
-
           <Button className="mt-4 w-full" size="lg" asChild>
+  {isSuccess ? (
+    // Temporarily show "Coming Soon" instead of a download link
+    <span className="text-white bg-gray-500 cursor-not-allowed px-4 py-2 rounded-md">
+      Download Coming Soon
+    </span>
+  ) : (
+    <Link href={`/products/${product.id}/purchase`} className="text-white">
+      Try Again
+    </Link>
+  )}
+</Button>
+
+          {/* <Button className="mt-4 w-full" size="lg" asChild>
             {isSuccess ? (
               <a
                 href={`/products/download/${await createDownloadVerification(product.id)}`}
@@ -66,7 +78,7 @@ export default async function SuccessPage({
                 Try Again
               </Link>
             )}
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
