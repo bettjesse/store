@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Stripe from "stripe";
 import { CheckoutForm } from "../../_components/CheckoutForm";
+import DisclaimerBanner from "../../_components/DisclaimerBanner";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -26,9 +27,15 @@ export default async function PurchasePage({
   }
 
   return (
+    <div className="space-y-8 px-4">
+
+  
+    <DisclaimerBanner/>
     <CheckoutForm
       product={product}
       clientSecret={paymentIntent.client_secret}
     />
+      </div>
   );
 }
+
