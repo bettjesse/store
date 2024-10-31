@@ -14,9 +14,9 @@ const DisclaimerBanner =()=> {
           payment: Card Number: <strong>4242 4242 4242 4242</strong>, Expiry Date:
           any future date, CVC: any 3-digit code.
         </p>
-        <button onClick={() => setIsVisible(false)} aria-label="Close">
+        {/* <button onClick={() => setIsVisible(false)} aria-label="Close">
           <X className="w-5 h-5 text-yellow-800" />
-        </button>
+        </button> */}
       </div>
     );
   }
